@@ -11,10 +11,13 @@ def anagram0Index(word):
 	else:
 		i = 0
 		for c in alphabetically_before_first_char(word):
-			w = word.copy()
-			i += perms(w.remove(c))
+			w = word
+			w = w[:w.find(c)]+w[w.find(c)+1:] #remove c from w
+			i += perms(w)
 		i += anagram0Index(word[:1])
 		return i
+
+
 
 def alphabetically_before_first_char(word):
 	return set([c for c in word[1:] if c < word[0]])
