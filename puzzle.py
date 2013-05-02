@@ -37,9 +37,8 @@ def anagram0Index(word):
     # its first letter.
     #
     # Complexity: (Assuming the number of different characters and the
-    # length of the list are proportional.) This recurses n times, once
-    # for each character it removes from the list.  It calls a couple
-    # O(n) functions and has an O(n) loop.  O(n * (n + n + n)) = O(n^2),
+    # length of the list are proportional.) This recurses n times, and 
+    # calls an O(n) function inside an O(n) loop. O(n^3) is
     # much better than the O(n!) solution of generating the list of
     # anagrams.
 
