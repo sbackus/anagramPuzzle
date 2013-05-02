@@ -10,7 +10,7 @@ def anagram0Index(word):
 		return 0
 	else:
 		i = 0
-		for c in alphabetically_before_first_char(word[0]):
+		for c in alphabetically_before_first_char(word):
 			w = word.copy()
 			i += perms(w.remove(c))
 		i += anagram0Index(word[:1])
