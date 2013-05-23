@@ -1,38 +1,37 @@
 from math import factorial
 
+
 def anagramIndex(word):
-	return anagram0Index(word)+1
+    return anagram0Index(word) + 1
+
 
 def anagram0Index(word):
-	# head = word[0]
-	# tail = word[1:]
-	if (len(word) == 1):
-		return 0
-	else:
-		i = 0
-		for c in alphabetically_before_first_char(word):
-			w = word
-			w = w[:w.find(c)]+w[w.find(c)+1:] #remove c from w
-			i += perms(w)
-		i += anagram0Index(word[:1])
-		return i
+    if (len(word) == 1):
+        return 0
+    else:
+        counted_anagrams = 0
+        for char in alphabetically_before_first_char(word):
+            counted_anagrams += num_anagrams_starting_with(word, char)
+        counted_anagrams += anagram0Index(word[1:])
+        return counted_anagrams
 
+
+def num_anagrams_starting_with(word, char):
+    char_index = word.find(char)
+    char_removed = word[:char_index] + word[char_index+1:]
+    return perms(char_removed)
 
 
 def alphabetically_before_first_char(word):
-	return set([c for c in word[1:] if c < word[0]])
+    return set([c for c in word if c < word[0]])
+
 
 def perms (word):
-	multiplicities = {}
-	for char in word:
-		multiplicities[char] = multiplicities.get(char,0) +1 
-	fact = factorial(len(word))
-	for key in multiplicities:
-		fact = fact/factorial(multiplicities[key])	
-	return fact
+    multiplicities = {}
+    for char in word:
+        multiplicities[char] = multiplicities.get(char, 0) + 1 
 
-def val(word, head):
-	word_set = set(word)
-	word = list(word_set)
-	word.sort()
-	return word.index(head)
+    val = factorial(len(word))
+    for div in multiplicities.values():
+        val /= div
+    return val
