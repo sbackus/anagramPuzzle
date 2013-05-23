@@ -15,6 +15,11 @@ class TestAnagramIndex(unittest.TestCase):
     def test_BAB(self):
         self.assertEqual(anagramIndex("BAB"), 2)
 
+    def test_QUESTION(self):
+        self.assertEqual(anagramIndex("QUESTION"), 24572)
+
+    def test_BOOKKEEPER(self):
+        self.assertEqual(anagramIndex("BOOKKEEPER"), 10743)
 
 class TestAlphabetic(unittest.TestCase):
 
